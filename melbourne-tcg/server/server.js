@@ -5,26 +5,10 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sequelize = require('./config/connections');
 const routes = require('./controllers');
+const userRoutes = require('./controllers/api/userRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-// const sess = {
-//   secret: 'Super secret secret',
-//   cookie: {
-//     maxAge: 3 * 60 * 60 * 1000,
-//     httpOnly: true,
-//     secure: false,
-//     sameSite: 'strict', 
-//   },
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new SequelizeStore({
-//     db: sequelize
-//   })
-// };
-
-// app.use(session(sess));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -40,9 +24,13 @@ app.get('/', (req, res) => {
 });
 
 app.use(routes);
+app.use('/api/users', userRoutes.router);
 
 //synchronizing the Sequelize models with the database
 sequelize.sync({ force: false }).then(() => {
+   // Call the function when the server starts
+    // userRoutes.createDefaultUser();
+
     //This line starts the Express.js server
     app.listen(PORT, () => console.log('Now listening on PORT 3001'));
 });

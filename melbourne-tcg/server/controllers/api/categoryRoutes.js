@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Category } = require('../../models');
+const { Category, Item } = require('../../models');
 
 //Endpoint '/api/categories'
 
@@ -12,6 +12,29 @@ router.get('/', async (req, res) => {
         console.log(err);
         res.status(500).json(err);
     }
+});
+
+//Get Category by id
+router.get("/:id", async (req, res) => {
+  try {
+    const categoryData = await Category.findOne({
+        where: {
+            id: req.params.id,
+        },
+        //shows all Items associated with the Category
+        include: [{ model: Item }],
+    });
+
+    if (!categoryData) {
+      res.status(404).json({ message: "No category with this id!" });
+      return;
+    }
+    res.status(200).json(categoryData);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 //Create Category

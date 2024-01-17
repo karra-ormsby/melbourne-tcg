@@ -1,11 +1,9 @@
 const path = require('path');
 const express = require('express');
-const session = require('express-session');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sequelize = require('./config/connections');
 const routes = require('./controllers');
-const userRoutes = require('./controllers/api/userRoutes');
+// const userRoutes = require('./controllers/api/userRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -24,12 +22,12 @@ app.get('/', (req, res) => {
 });
 
 app.use(routes);
-app.use('/api/users', userRoutes.router);
+// app.use('/api/users', userRoutes.router);
 
 //synchronizing the Sequelize models with the database
 sequelize.sync({ force: false }).then(() => {
    // Call the function when the server starts
-    // userRoutes.createDefaultUser();
+  //  userRoutes.createDefaultUser();
 
     //This line starts the Express.js server
     app.listen(PORT, () => console.log('Now listening on PORT 3001'));

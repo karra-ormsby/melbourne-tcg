@@ -14,13 +14,36 @@ router.get('/', async (req, res) => {
     }
 });
 
+//Get Item by id
+router.get("/:id", async (req, res) => {
+  try {
+    const itemData = await Item.findOne({
+        where: {
+            id: req.params.id,
+        },
+        //shows the Category for the Item
+        include: [{ model: Category }],
+    });
+
+    if (!itemData) {
+      res.status(404).json({ message: "No item with this id!" });
+      return;
+    }
+    res.status(200).json(itemData);
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 //Create Item
 router.post('/', async (req, res) => {
     try {
         const newItem = await Item.create({
             name: req.body.name,
             description: req.body.description,
-            amount: req.body.amount,
+            quantity: req.body.quantity,
             price: req.body.price,
             category_id: req.body.category_id,
             

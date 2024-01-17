@@ -19,7 +19,7 @@ Item.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        amount: {
+        quantity: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },

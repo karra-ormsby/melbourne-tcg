@@ -7,6 +7,7 @@ const { Category, Item } = require('../../models');
 router.get('/', async (req, res) => {
     try {
         const categoryData = await Category.findAll();
+        console.log('Category Data:', categoryData);
         res.status(200).json(categoryData);
     } catch (err) {
         console.log(err);
@@ -42,6 +43,7 @@ router.post('/', async (req, res) => {
     try {
         const newCategory = await Category.create({
             category_name: req.body.category_name,
+            image: req.body.image,
         });
         res.status(200).json(newCategory);
     } catch (err) {

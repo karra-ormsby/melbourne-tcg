@@ -17,7 +17,7 @@ Item.init(
         },
         description: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         quantity: {
             type: DataTypes.INTEGER,

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -33,10 +34,12 @@ const Categories = () => {
   return (
     <div className='categories'>
       {categories.map((category) => (
-        <div className="categoryCard" key={category.id}>
-          <h2>{category.category_name}</h2>
-          <img className="categoryImage" src={category.image} />
-        </div>
+        <Link to={`/categories/${category.id}`}>
+          <div className="categoryCard" key={category.id}>
+            <h2>{category.category_name}</h2>
+            <img className="categoryImage" src={category.image} />
+          </div>
+        </Link>
       ))}
     </div>
   );

@@ -1,3 +1,7 @@
+*{
+  margin: 1rem;
+}
+
 .itemCard {
   border: 1px solid rgb(102, 95, 95);
   padding: 1rem;

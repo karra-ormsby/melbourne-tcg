@@ -13,6 +13,7 @@ import Category from './components/Category';
 import Items from './pages/Items';
 import Item from './components/Item'
 import AddListings from './pages/AddListings';
+import AddCategories from './pages/AddCategories';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/items" element={<Items />} />
             <Route path="/items/:itemId" element={<Item />} />
             <Route path="/additems" element={<AddListings />} />
+            <Route path="/addcategories" element={<AddCategories />} />
           </Routes>
         </main>
       </div>

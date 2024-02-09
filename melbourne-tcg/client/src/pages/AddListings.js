@@ -111,9 +111,7 @@ const AddListings = () => {
                 <input style={{ fontSize: "50px" }} id="price" type='text' name='price' value={formData.price} onChange={handleChange} />
                 <br />
 
-                <label htmlFor="cat">Category</label>
-                {/* <input style={{ fontSize: "50px" }} id="cat" type='text' name='categoryId' value={formData.categoryId} onChange={handleChange} /> */}
-                
+                <label htmlFor="cat">Category</label>                
                 <select style={{ fontSize: "50px" }} name='categoryId' value={formData.categoryId} onChange={handleChange}>
                     <option value='' disabled>Please select a category</option>
                     {categories.map((category) => (

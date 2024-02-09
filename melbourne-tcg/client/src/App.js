@@ -7,10 +7,12 @@ import {
 } from "react-router-dom";
 import './App.css';
 
+import Navbar from './components/Navbar';
 import Categories from './pages/Categories'
 import Category from './components/Category';
+import Items from './pages/Items';
 import Item from './components/Item'
-// import Items from './pages/Items';
+import AddListings from './pages/AddListings';
 
 function App() {
   return (
@@ -18,13 +20,20 @@ function App() {
       <div className="App">
         <header>
           <h1>Melbourne TCG</h1>
+          <nav>
+            <Navbar />
+          </nav>
         </header>
+        <main>
+          <Routes>
+            <Route path="/categories" element={<Categories />} />
+            <Route path="/categories/:categoryId" element={<Category />} />
+            <Route path="/items" element={<Items />} />
+            <Route path="/items/:itemId" element={<Item />} />
+            <Route path="/additems" element={<AddListings />} />
+          </Routes>
+        </main>
       </div>
-      <Routes>
-        <Route path="/" element={<Categories />} />
-        <Route path="/categories/:categoryId" element={<Category />} />
-        <Route path="/items/:itemId" element={<Item />} />
-      </Routes>
     </Router>
   );
 }

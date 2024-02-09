@@ -51,7 +51,7 @@ const Category = () => {
         {items.map((item) => (
             <tr key={item.id}>
                 <td>
-                    <Link to={`/items/${item.id}`} >
+                    <Link className='itemName' to={`/items/${item.id}`} >
                     {item.name}
                     </Link>
                 </td>

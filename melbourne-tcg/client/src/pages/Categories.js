@@ -31,13 +31,14 @@ const Categories = () => {
     return <p>Loading...</p>;
   }
 
+
   return (
     <div className='categories'>
       {categories.map((category) => (
-        <Link to={`/categories/${category.id}`}>
+        <Link to={`/categories/${category.id}`} key={category.id}>
           <div className="categoryCard" key={category.id}>
             <h2 className='categoryName'>{category.category_name}</h2>
-            <img className="categoryImage" src={category.image} />
+            <img className="categoryImage" src={`http://localhost:3001/${category.image}`} />
           </div>
         </Link>
       ))}

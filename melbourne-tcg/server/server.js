@@ -39,7 +39,10 @@ const routes = require('./controllers');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors()); // Enable CORS for all routes
+// Enable CORS for all routes
+app.use(cors());
+// Serve static files from the 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

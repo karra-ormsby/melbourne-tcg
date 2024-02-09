@@ -1,5 +1,8 @@
 const router = require('express').Router();
+const multer = require('multer');
 const { Category, Item } = require('../../models');
+
+const upload = multer({ dest: 'uploads/' });
 
 //Endpoint '/api/categories'
 
@@ -39,11 +42,11 @@ router.get("/:id", async (req, res) => {
 });
 
 //Create Category
-router.post('/', async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
     try {
         const newCategory = await Category.create({
             category_name: req.body.category_name,
-            image: req.body.image,
+            image: req.file.path
         });
         res.status(200).json(newCategory);
     } catch (err) {
